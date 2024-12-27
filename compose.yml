@@ -1,0 +1,18 @@
+name: fastapi-development
+
+services:
+  dev-db:
+    image: postgres:alpine
+    restart: always
+    env_file:
+      - ./.env
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: inventory
+
+  # dev-test:
+  #   image: postgres:alpine
+  #   restart: always
+  #   ports:
+  #     - 5434:5432
