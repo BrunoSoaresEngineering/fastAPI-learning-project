@@ -8,8 +8,8 @@ services:
       - ./.env
     ports:
       - "5433:5432"
-    environment:
-      POSTGRES_DB: inventory
+    volumes:
+      - ./scripts:/docker-entrypoint-initdb.d
 
   # dev-test:
   #   image: postgres:alpine
