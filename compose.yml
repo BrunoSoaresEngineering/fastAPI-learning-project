@@ -1,5 +1,9 @@
 name: fastapi-development
 
+networks:
+  dev-network:
+    driver: bridge
+
 services:
   dev-db:
     image: postgres:alpine
@@ -10,6 +14,8 @@ services:
       - "5433:5432"
     volumes:
       - ./scripts:/docker-entrypoint-initdb.d
+    networks:
+      - dev-network
 
   # dev-test:
   #   image: postgres:alpine
