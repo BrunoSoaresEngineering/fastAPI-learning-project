@@ -1,1 +1,1 @@
-from fixtures import db_session  # noqa: F401
+from .fixtures import db_session  # noqa: F401
