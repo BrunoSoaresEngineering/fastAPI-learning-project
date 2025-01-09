@@ -35,3 +35,11 @@ def test_model_structure_nullable_constraints(db_inspector):
         assert column["nullable"] == expected_nullable.get(
             column_name
         ), f"column '{column_name}' nullable not set as expected"
+
+
+def test_model_structure_column_constraints(db_inspector):
+    table = "category"
+    constraints = db_inspector.get_check_constraints(table)
+
+    assert any(constraint["name"] == "name_length_check" for constraint in constraints)
+    assert any(constraint["name"] == "slug_length_check" for constraint in constraints)
