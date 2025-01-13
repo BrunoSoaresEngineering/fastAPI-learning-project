@@ -32,9 +32,9 @@ def test_model_structure_nullable_constraints(db_inspector):
 
     for column in columns:
         column_name = column["name"]
-        assert column["nullable"] == expected_nullable.get(
-            column_name
-        ), f"column '{column_name}' nullable not set as expected"
+        assert column["nullable"] == expected_nullable.get(column_name), (
+            f"column '{column_name}' nullable not set as expected"
+        )
 
 
 def test_model_structure_column_constraints(db_inspector):
@@ -51,3 +51,11 @@ def test_model_structure_default_values(db_inspector):
 
     assert columns["is_active"]["default"] == "false"
     assert columns["level"]["default"] == "100"
+
+
+def test_model_structure_column_lengths(db_inspector):
+    table = "category"
+    columns = {column["name"]: column for column in db_inspector.get_columns(table)}
+
+    assert columns["name"]["type"].length == 100
+    assert columns["slug"]["type"].length == 120
