@@ -43,3 +43,11 @@ def test_model_structure_column_constraints(db_inspector):
 
     assert any(constraint["name"] == "name_length_check" for constraint in constraints)
     assert any(constraint["name"] == "slug_length_check" for constraint in constraints)
+
+
+def test_model_structure_default_values(db_inspector):
+    table = "category"
+    columns = {column["name"]: column for column in db_inspector.get_columns(table)}
+
+    assert columns["is_active"]["default"] == "false"
+    assert columns["level"]["default"] == "100"
