@@ -21,8 +21,8 @@ class Category(Base):
     parent_id = Column(Integer, nullable=True)
 
     __table_args__ = (
-        CheckConstraint("LENGTH(name) > 0", name="name_length_check"),
-        CheckConstraint("LENGTH(slug) > 0", name="slug_length_check"),
+        CheckConstraint("LENGTH(name) > 0", name="category_name_length_check"),
+        CheckConstraint("LENGTH(slug) > 0", name="category_slug_length_check"),
         UniqueConstraint("name", "level", name="uq_category_name_level"),
         UniqueConstraint("slug", name="uq_category_slug"),
     )
