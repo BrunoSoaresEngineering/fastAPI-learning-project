@@ -25,7 +25,20 @@ erDiagram
       integer category_id FK "NN"
     }
 
+    Product_line {
+      integer id PK "NN"
+      numeric(5-2) price "NN"
+      UUID sku UK "NN"
+      integer stock_qty "NN DF(0)"
+      boolean is_active "NN DF(false)"
+      integer order "NN"
+      float weight "NN"
+      datetime created_at "NN"
+      integer product_id FK "NN"
+    }
+
     Category |o--o{ Category : "has parent"
     Product }o--|| Category: "belongs to"
+    Product_line }o--|| Product: ""
 
 ```
