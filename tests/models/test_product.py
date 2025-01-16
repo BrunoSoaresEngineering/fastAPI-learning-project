@@ -20,6 +20,7 @@ def test_model_structure_column_data_types(db_inspector):
     assert isinstance(columns["is_active"]["type"], Boolean)
     assert isinstance(columns["stock_status"]["type"], Enum)
     assert isinstance(columns["category_id"]["type"], Integer)
+    assert isinstance(columns["seasonal_event_id"]["type"], Integer)
 
 
 def test_model_structure_nullable_constraints(db_inspector):
@@ -38,6 +39,7 @@ def test_model_structure_nullable_constraints(db_inspector):
         "is_active": False,
         "stock_status": False,
         "category_id": False,
+        "seasonal_event_id": True,
     }
 
     for column in columns:
@@ -52,6 +54,7 @@ def test_model_structure_foreign_keys(db_inspector):
     foreign_keys = db_inspector.get_foreign_keys(table)
 
     assert any("category_id" in fk["constrained_columns"] for fk in foreign_keys)
+    assert any("seasonal_event_id" in fk["constrained_columns"] for fk in foreign_keys)
 
 
 def test_model_structure_column_constraints(db_inspector):

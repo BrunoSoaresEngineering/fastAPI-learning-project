@@ -4,8 +4,8 @@
 erDiagram
     category {
       integer id PK "NN"
-      char(100) name "NN"
-      char(120) slug UK "NN"
+      string(100) name "NN"
+      string(120) slug UK "NN"
       boolean is_active "NN DV(False)"
       integer level "NN DV(100)"
       integer parent_id FK
@@ -23,6 +23,7 @@ erDiagram
       boolean is_active "NN DF(False)"
       enum stock_status "NN DV(OutOfStock)"
       integer category_id FK "NN"
+      integer seasonal_event_id FK
     }
 
     product_line {
@@ -39,14 +40,22 @@ erDiagram
 
     product_image {
       integer id PK "NN"
-      string alternative_text "NN"
-      string url "NN"
+      string(100) alternative_text "NN"
+      string(100) url "NN"
       integer order "NN"
       integer product_line_id "NN"
     }
 
+    seasonal_event {
+      integer id PK "NN"
+      datetime start_date "NN"
+      datetime end_date "NN"
+      string(100) name UK "NN"
+    }
+
     category |o--o{ category : "has parent"
     product }o--|| category: "belongs to"
+    product }o--o| seasonal_event: ""
     product_line }o--|| product: ""
     product_image }o--|| product: ""
 
