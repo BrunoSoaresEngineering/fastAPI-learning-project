@@ -47,6 +47,13 @@ def test_model_structure_nullable_constraints(db_inspector):
         )
 
 
+def test_model_structure_foreign_keys(db_inspector):
+    table = "product"
+    foreign_keys = db_inspector.get_foreign_keys(table)
+
+    assert any("category_id" in fk["constrained_columns"] for fk in foreign_keys)
+
+
 def test_model_structure_column_constraints(db_inspector):
     table = "product"
     constraints = db_inspector.get_check_constraints(table)
