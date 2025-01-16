@@ -147,3 +147,16 @@ class SeasonalEvents(Base):
         CheckConstraint("LENGTH(name) > 0", name="seasonal_event_name_length"),
         UniqueConstraint("name", name="uq_seasonal_event_name"),
     )
+
+
+class Attribute(Base):
+    __tablename__ = "attribute"
+
+    id = Column(Integer, primary_key=True, nullable=False)
+    name = Column(String(100), nullable=False)
+    description = Column(String(100), nullable=True)
+
+    __table_args__ = (
+        CheckConstraint("LENGTH(name) > 0", name="attribute_name_length"),
+        UniqueConstraint("name", name="uq_attribute_name"),
+    )

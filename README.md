@@ -53,6 +53,12 @@ erDiagram
       string(100) name UK "NN"
     }
 
+    attribute {
+      integer id PK "NN"
+      string(100) name UK "NN"
+      string(100) description
+    }
+
     category |o--o{ category : "has parent"
     product }o--|| category: "belongs to"
     product }o--o| seasonal_event: ""
