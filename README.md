@@ -66,10 +66,17 @@ erDiagram
       string(100) description
     }
 
+    attribute_value {
+      integer id PK "NN"
+      string(100) attribute_value "NN"
+      integer attribute_id FK "NN"
+    }
+
     category |o--o{ category : "has parent"
     product }o--|| category: "belongs to"
     product }o--o| seasonal_event: ""
     product_line }o--|| product: ""
     product_image }o--|| product: ""
+    attribute_value }o--|| attribute: ""
 
 ```

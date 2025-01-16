@@ -162,6 +162,21 @@ class Attribute(Base):
     )
 
 
+class AttributeValue(Base):
+    __tablename__ = "attribute_value"
+
+    id = Column(Integer, primary_key=True, nullable=False)
+    attribute_value = Column(String(100), nullable=False)
+    attribute_id = Column(Integer, ForeignKey("attribute.id"), nullable=False)
+
+    __table_args__ = (
+        CheckConstraint("LENGTH(attribute_value) > 0", name="attribute_value_length"),
+        UniqueConstraint(
+            "attribute_value", "attribute_id", name="uq_attribute_value_attribute_id"
+        ),
+    )
+
+
 class ProductType(Base):
     __tablename__ = "product_type"
 
