@@ -46,6 +46,13 @@ erDiagram
       integer product_line_id "NN"
     }
 
+    product_type {
+      integer id PK "NN"
+      string(100) name "NN"
+      integer level "NN"
+      integer parent FK
+    }
+
     seasonal_event {
       integer id PK "NN"
       datetime start_date "NN"
