@@ -2,7 +2,7 @@
 
 ```mermaid
 erDiagram
-    Category {
+    category {
       integer id PK "NN"
       char(100) name "NN"
       char(120) slug UK "NN"
@@ -11,7 +11,7 @@ erDiagram
       integer parent_id FK
     }
 
-    Product {
+    product {
       integer id PK "NN"
       UUID pid UK "NN"
       string(200) name UK "NN"
@@ -25,7 +25,7 @@ erDiagram
       integer category_id FK "NN"
     }
 
-    Product_line {
+    product_line {
       integer id PK "NN"
       numeric(5-2) price "NN"
       UUID sku UK "NN"
@@ -37,8 +37,17 @@ erDiagram
       integer product_id FK "NN"
     }
 
-    Category |o--o{ Category : "has parent"
-    Product }o--|| Category: "belongs to"
-    Product_line }o--|| Product: ""
+    product_image {
+      integer id PK "NN"
+      string alternative_text "NN"
+      string url "NN"
+      integer order "NN"
+      integer product_line_id "NN"
+    }
+
+    category |o--o{ category : "has parent"
+    product }o--|| category: "belongs to"
+    product_line }o--|| product: ""
+    product_image }o--|| product: ""
 
 ```
