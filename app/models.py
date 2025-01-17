@@ -207,3 +207,19 @@ class ProductLineAttributeValue(Base):
             name="uq_product_line_attribute_value",
         ),
     )
+
+
+class ProductProductType(Base):
+    __tablename__ = "product_product_type"
+
+    id = Column(Integer, primary_key=True, nullable=False)
+    product_id = Column(Integer, ForeignKey("product.id"), nullable=False)
+    product_type_id = Column(Integer, ForeignKey("product_type.id"), nullable=False)
+
+    __table_args__ = (
+        UniqueConstraint(
+            "product_id",
+            "product_type_id",
+            name="uq_product_product_type",
+        ),
+    )

@@ -53,6 +53,12 @@ erDiagram
       integer parent FK
     }
 
+    product_product_type {
+      integer id PK "NN"
+      integer product_id FK "NN"
+      integer product_type_id FK "NN"
+    }
+
     seasonal_event {
       integer id PK "NN"
       datetime start_date "NN"
@@ -81,10 +87,12 @@ erDiagram
     category |o--o{ category : "has parent"
     product }o--|| category: "belongs to"
     product }o--o| seasonal_event: ""
+    product ||--o{ product_product_type: ""
     product ||--o{ product_line_attribute_value: ""
     product_line }o--|| product: ""
     product_image }o--|| product: ""
     attribute_value }o--|| attribute: ""
     attribute_value ||--o{  product_line_attribute_value: ""
+    product_type ||--o{ product_product_type: ""
 
 ```
