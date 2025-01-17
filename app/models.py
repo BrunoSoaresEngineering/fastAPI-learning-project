@@ -189,3 +189,21 @@ class ProductType(Base):
         CheckConstraint("LENGTH(name) > 0", name="product_type_name_length"),
         UniqueConstraint("name", "level", name="uq_product_type_name_level"),
     )
+
+
+class ProductLineAttributeValue(Base):
+    __tablename__ = "product_line_attribute_value"
+
+    id = Column(Integer, primary_key=True, nullable=False)
+    product_line_id = Column(Integer, ForeignKey("product_line.id"), nullable=False)
+    attribute_value_id = Column(
+        Integer, ForeignKey("attribute_value.id"), nullable=False
+    )
+
+    __table_args__ = (
+        UniqueConstraint(
+            "product_line_id",
+            "attribute_value_id",
+            name="uq_product_line_attribute_value",
+        ),
+    )

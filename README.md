@@ -72,11 +72,19 @@ erDiagram
       integer attribute_id FK "NN"
     }
 
+    product_line_attribute_value {
+      integer id pk "NN"
+      integer attribute_value_id FK "NN"
+      integer product_line_id FK "NN"
+    }
+
     category |o--o{ category : "has parent"
     product }o--|| category: "belongs to"
     product }o--o| seasonal_event: ""
+    product ||--o{ product_line_attribute_value: ""
     product_line }o--|| product: ""
     product_image }o--|| product: ""
     attribute_value }o--|| attribute: ""
+    attribute_value ||--o{  product_line_attribute_value: ""
 
 ```
